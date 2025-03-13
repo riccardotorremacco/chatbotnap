@@ -1,0 +1,346 @@
+/* Stile generale dell'interfaccia chatbot */
+.chatbot-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar - con miglioramenti per responsività */
+.sidebar {
+  background-color: #f5f7fa;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  transition: width 0.3s ease;
+}
+
+/* Versione espansa della sidebar per dispositivi desktop */
+@media (min-width: 768px) {
+  .sidebar-expanded {
+    width: 250px;
+  }
+  
+  .sidebar-expanded .sidebar-icon-text {
+    display: inline-block;
+  }
+}
+
+/* Nasconde il testo delle icone della sidebar nella versione collassata */
+.sidebar-icon-text {
+  display: none;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+/* Stile per le icone nella sidebar con tooltip */
+.sidebar-icon {
+  width: 40px;
+  height: 40px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar-icon:hover {
+  background-color: #e0e5ec;
+}
+
+/* Tooltip per le icone della sidebar */
+.sidebar-icon[data-tooltip]:hover:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50px;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+/* Area principale della chat */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+/* Header della chat */
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e5ec;
+  background-color: #ffffff;
+}
+
+.header-logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.header-icons {
+  margin-left: auto;
+  display: flex;
+}
+
+.header-icon {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* Area messaggi con miglioramenti di stile */
+.messages-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animazione di transizione per i nuovi messaggi */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stile comune per tutti i messaggi */
+.message {
+  max-width: 70%;
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  border-radius: 18px;
+  animation: fadeIn 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Messaggi del bot con stile distintivo */
+.bot-message {
+  align-self: flex-start;
+  background-color: #f0f2f5;
+  color: #333333;
+  border-top-left-radius: 5px;
+}
+
+/* Messaggi dell'utente con stile distintivo */
+.user-message {
+  align-self: flex-end;
+  background-color: #4a6ee0;
+  color: white;
+  border-top-right-radius: 5px;
+}
+
+/* Avatar container */
+.avatar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Stile dell'avatar */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.bot-avatar {
+  background-color: #4a6ee0;
+  color: white;
+}
+
+.user-avatar {
+  background-color: #5d5fef;
+  color: white;
+}
+
+/* Indicatore di digitazione con animazione migliorata */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.typing-bubble {
+  width: 8px;
+  height: 8px;
+  margin: 0 2px;
+  background-color: #999;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.typing-bubble:nth-child(1) {
+  animation: typingBubble 1s infinite 0.1s;
+}
+.typing-bubble:nth-child(2) {
+  animation: typingBubble 1s infinite 0.3s;
+}
+.typing-bubble:nth-child(3) {
+  animation: typingBubble 1s infinite 0.5s;
+}
+
+@keyframes typingBubble {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Area di input con miglioramenti */
+.input-container {
+  display: flex;
+  padding: 15px 20px;
+  border-top: 1px solid #e0e5ec;
+  background-color: #ffffff;
+}
+
+/* Container per pulsanti rapidi */
+.quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+  gap: 10px;
+}
+
+.quick-button {
+  padding: 8px 15px;
+  background-color: #f0f2f5;
+  border-radius: 18px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+}
+
+.quick-button:hover {
+  background-color: #e4e6eb;
+}
+
+/* Input di testo migliorato */
+.message-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #e0e5ec;
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.message-input:focus {
+  border-color: #4a6ee0;
+}
+
+/* Pulsante di invio */
+.send-button {
+  background-color: #4a6ee0;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: #3a5bc0;
+}
+
+/* Pulsante per iniziare una nuova conversazione */
+.new-chat-button {
+  position: fixed;
+  bottom: 150px;
+  right: 20px;
+  background-color: #4a6ee0;
+  color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border: none;
+  z-index: 100;
+  transition: transform 0.2s;
+  padding: 10px 15px;
+}
+
+.new-chat-text {
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.new-chat-button:hover {
+  transform: scale(1.1);
+}
+
+/* Footer della chat */
+.chat-footer {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  border-top: 1px solid #e0e5ec;
+}
+
+/* Miglioramenti di accessibilità per il focus */
+button:focus, input:focus {
+  outline: 2px solid #4a6ee0;
+  outline-offset: 2px;
+}
+
+/* Media query per dispositivi mobili */
+@media (max-width: 768px) {
+  .chatbot-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    padding: 0 10px;
+  }
+  
+  .sidebar-icon {
+    margin: 0 10px;
+  }
+  
+  .chat-area {
+    height: calc(100vh - 60px);
+  }
+  
+  .message {
+    max-width: 85%;
+  }
+  
+  .quick-buttons {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding: 10px;
+  }
+  
+  .quick-button {
+    white-space: nowrap;
+  }
+}
